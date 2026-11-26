@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Pas de pastille Next.js en développement : elle gêne les captures de la page.
+  devIndicators: false,
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

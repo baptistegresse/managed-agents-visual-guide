@@ -1,9 +1,11 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { localePath, type Locale } from "@/lib/i18n/locale";
 import { uiStrings } from "@/lib/i18n/ui";
 import { BASE_LESSONS, catalog, isBaseLesson, lessonById, nextBaseLesson } from "@/lib/lesson";
+import { positionFromSearch } from "@/lib/lesson/deeplink";
 import { lessonView, stepCount } from "@/lib/lesson/play";
 import { LocaleProvider } from "@/components/i18n/LocaleContext";
 import { Scene } from "@/components/workshop/scene/Scene";
@@ -37,9 +39,12 @@ interface LessonPlayerProps {
  */
 export function LessonPlayer({ initialLocale }: LessonPlayerProps) {
   const [locale, setLocale] = useState<Locale>(initialLocale);
-  const [position, setPosition] = useState<Position>({ lessonId: BASE_LESSONS[0].id, index: 0 });
+  // Une adresse comme « ?chapter=session&step=5 » ouvre directement cette étape.
+  const searchParams = useSearchParams();
+  const [linked] = useState(() => positionFromSearch(`?${searchParams.toString()}`));
+  const [position, setPosition] = useState<Position>(linked ?? { lessonId: BASE_LESSONS[0].id, index: 0 });
   const [finished, setFinished] = useState<ReadonlySet<string>>(new Set());
-  const [areExtrasOpen, setExtrasOpen] = useState(false);
+  const [areExtrasOpen, setExtrasOpen] = useState(linked !== null && !isBaseLesson(linked.lessonId));
 
   const ui = uiStrings(locale);
   const { bases, extras } = catalog(locale);
