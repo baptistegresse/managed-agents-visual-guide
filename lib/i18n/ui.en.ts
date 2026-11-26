@@ -1,0 +1,76 @@
+import type { UiStrings } from "./ui";
+
+const plural = (count: number): string => (count === 1 ? "" : "s");
+
+export const UI_EN: UiStrings = {
+  meta: {
+    title: "Agent Workshop",
+    description: "Understand Managed Agents, and how to plug an agent into a backend, step by step.",
+  },
+  player: {
+    title: "Agent Workshop",
+    tagline: "Understand Managed Agents, one brick at a time.",
+    illustration: "Illustration: no API call is made",
+    sceneLabel: "The agent's room. Click to move on.",
+    language: "Language",
+    nextChapter: (title) => `Next chapter: ${title} →`,
+    openExtras: "Open the annexes →",
+  },
+  step: {
+    progress: (position, total) => `Step ${position} / ${total}`,
+    listLabel: "Steps of the lesson",
+    stepLabel: (position, title) => `Step ${position}: ${title}`,
+    back: "← Back",
+    next: "Click to continue →",
+    end: "End of the chapter",
+  },
+  chapters: {
+    label: "Chapters",
+    bases: "The basics",
+    extras: "Annexes",
+    locked: "They open once you have finished the basics.",
+    showNow: "Show them now",
+  },
+  code: {
+    owner: "Your backend",
+  },
+  events: {
+    title: "The session's event stream",
+    empty: "Nothing yet: no session is running.",
+    origins: {
+      agent: "agent",
+      app: "your backend",
+      session: "session",
+      entry: "entry",
+      sandbox: "container",
+      grader: "grader",
+      mcp: "third party",
+      web: "web",
+    },
+  },
+  scene: {
+    label: "Isometric view of the session: the room where the agent decides, with its context, its container and the vault",
+    session: "Session · hosted by Anthropic",
+    room: "The agent's room",
+    networkLimited: "container: network closed",
+    networkOpen: "container: network open",
+    vault: (keyCount) => `Vault · ${keyCount} key${plural(keyCount)}`,
+    context: "Context",
+    compacted: (times) => `compacted ×${times}`,
+    container: "Container",
+    mountedFile: "file mounted",
+    memory: (noteCount) => `Memory · ${noteCount} note${plural(noteCount)}`,
+    skills: "Skills",
+    loading: "loading",
+    clock: "Deployment clock",
+    scheduled: "Scheduled deployment",
+    terminated: "Session terminated",
+    retrying: "Fault: retrying…",
+    awaitingApproval: "Waiting for your approval",
+    agentName: "Support assistant",
+    bareModel: "Claude, a model",
+    budget: "Budget",
+    paused: "Paused",
+    grader: (attempt, maxAttempts) => `Grader · attempt ${attempt}/${maxAttempts}`,
+  },
+};

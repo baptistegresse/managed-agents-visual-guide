@@ -1,0 +1,76 @@
+import type { UiStrings } from "./ui";
+
+const plural = (count: number): string => (count > 1 ? "s" : "");
+
+export const UI_FR: UiStrings = {
+  meta: {
+    title: "Atelier d'agent",
+    description: "Comprendre Managed Agents, et comment brancher un agent à un backend, étape par étape.",
+  },
+  player: {
+    title: "Atelier d'agent",
+    tagline: "Comprendre Managed Agents, brique par brique.",
+    illustration: "Illustration : aucun appel à l'API",
+    sceneLabel: "La pièce de l'agent. Un clic passe à la suite.",
+    language: "Langue",
+    nextChapter: (title) => `Chapitre suivant : ${title} →`,
+    openExtras: "Ouvrir les annexes →",
+  },
+  step: {
+    progress: (position, total) => `Étape ${position} / ${total}`,
+    listLabel: "Étapes de la leçon",
+    stepLabel: (position, title) => `Étape ${position} : ${title}`,
+    back: "← Retour",
+    next: "Clique pour continuer →",
+    end: "Fin du chapitre",
+  },
+  chapters: {
+    label: "Chapitres",
+    bases: "Les bases",
+    extras: "Annexes",
+    locked: "Elles s'ouvrent quand tu as terminé les bases.",
+    showNow: "Les afficher maintenant",
+  },
+  code: {
+    owner: "Ton backend",
+  },
+  events: {
+    title: "Flux d'événements de la session",
+    empty: "Rien pour l'instant : aucune session ne tourne.",
+    origins: {
+      agent: "agent",
+      app: "ton backend",
+      session: "session",
+      entry: "entrée",
+      sandbox: "conteneur",
+      grader: "correcteur",
+      mcp: "service tiers",
+      web: "web",
+    },
+  },
+  scene: {
+    label: "Vue isométrique de la session : la pièce où l'agent décide, avec son contexte, son conteneur et le vault",
+    session: "Session · chez Anthropic",
+    room: "La pièce de l'agent",
+    networkLimited: "conteneur : réseau fermé",
+    networkOpen: "conteneur : réseau ouvert",
+    vault: (keyCount) => `Vault · ${keyCount} clé${plural(keyCount)}`,
+    context: "Contexte",
+    compacted: (times) => `compacté ×${times}`,
+    container: "Conteneur",
+    mountedFile: "fichier monté",
+    memory: (noteCount) => `Mémoire · ${noteCount} note${plural(noteCount)}`,
+    skills: "Skills",
+    loading: "chargement",
+    clock: "Horloge du déploiement",
+    scheduled: "Déploiement planifié",
+    terminated: "Session terminée",
+    retrying: "Panne : nouvel essai…",
+    awaitingApproval: "Attend ton accord",
+    agentName: "Assistant support",
+    bareModel: "Claude, un modèle",
+    budget: "Budget",
+    paused: "En pause",
+    grader: (attempt, maxAttempts) => `Correcteur · essai ${attempt}/${maxAttempts}`,
+  },
+};
